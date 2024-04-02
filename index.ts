@@ -19,7 +19,12 @@ app.use(morgan('tiny'))
 app.get('/', (req: Request, res: Response) => {
 	res.send('Jix Express API Demo')
 })
-app.use('/api/contacts', contactRouter)
+app.use(contactRouter)
+
+// Swagger/OpenAPI
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./static/swagger.json')
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.listen(port, () => {
 	console.log(`Server: http://localhost:${port}`)

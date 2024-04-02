@@ -16,7 +16,7 @@ const contacts = [
 ]
 
 /* GET contact list. */
-router.get('/', async (req: Request, res: Response) => {
+router.get('/api/contacts', async (req: Request, res: Response) => {
 	res.send(contacts)
 })
 
