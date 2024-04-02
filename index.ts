@@ -17,7 +17,7 @@ app.use(morgan('tiny'))
 
 // API Endpoints
 app.get('/', (req: Request, res: Response) => {
-	res.send('Jix Express API Demo')
+	res.redirect('/docs')
 })
 app.use(contactRouter)
 

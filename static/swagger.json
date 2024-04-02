@@ -13,10 +13,24 @@
   "paths": {
     "/api/contacts": {
       "get": {
+        "tags": [
+          "Contacts"
+        ],
         "description": "",
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
           }
         }
       }

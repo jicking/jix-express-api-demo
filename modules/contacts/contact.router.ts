@@ -1,8 +1,9 @@
 import express, { Request, Response } from 'express'
+import { Contact } from './contact.models'
 
 const router = express.Router()
-
-const contacts = [
+const baseApiUrl = '/api/contacts'
+const contacts: Contact[] = [
 	{
 		id: 'test123',
 		name: 'tobi',
@@ -17,11 +18,13 @@ const contacts = [
 
 /* GET contact list. */
 router.get('/api/contacts', async (req: Request, res: Response) => {
+	// #swagger.tags = ['Contacts']
 	res.send(contacts)
 })
 
-// router.post('/', async (req: Request, res: Response) => {
-// 	res.status(201).send('created contact')
-// })
+router.post('/api/contacts', async (req: Request, res: Response) => {
+	// #swagger.tags = ['Contacts']
+	res.status(201).send(contacts[0])
+})
 
 export default router
