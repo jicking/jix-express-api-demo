@@ -19,14 +19,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "isDisabled",
+            "name": "activeOnly",
             "in": "query",
             "schema": {
               "type": "bool"
@@ -68,7 +61,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/contact"
+                "$ref": "#/components/schemas/contactInput"
               }
             }
           }
@@ -97,10 +90,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/contactArray"
+                  "$ref": "#/components/schemas/contact"
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -136,7 +132,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/contact"
+                "$ref": "#/components/schemas/contactInput"
               }
             }
           }
@@ -192,6 +188,22 @@
         "items": {
           "$ref": "#/components/schemas/contact"
         }
+      },
+      "contactInput": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "isDisabled": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "name"
+        ]
       }
     }
   }

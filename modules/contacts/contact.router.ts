@@ -16,15 +16,11 @@ const contacts: Contact[] = [
 ]
 
 router.get('/api/contacts', async (req: Request, res: Response) => {
-	/* 
+	/*
 		#swagger.tags = ['Contacts']
-		#swagger.parameters['name'] = {
-					in: 'query',
-					type: 'string'
-		}
-		#swagger.parameters['isDisabled'] = {
-					in: 'query',
-					type: 'bool'
+		#swagger.parameters['activeOnly'] = {
+			in: 'query',
+			type: 'bool'
 		}
 		#swagger.responses[200] = {
 			content: {
@@ -32,35 +28,40 @@ router.get('/api/contacts', async (req: Request, res: Response) => {
                     schema: { $ref: "#/definitions/contactArray" },
                 }
             }
-        }   
+        }
     */
 	res.send(contacts)
 })
 
 router.get('/api/contacts/:id', async (req: Request, res: Response) => {
-	/* 
+	/*
 		#swagger.tags = ['Contacts']
 		#swagger.parameters['id'] = { required: true, in: 'path' }
 		#swagger.responses[200] = {
 			content: {
                 "application/json": {
-                    schema: { $ref: "#/definitions/contactArray" },
+                    schema: { $ref: "#/definitions/contact" },
                 }
             }
-        }   
+        }
     */
-	res.send(contacts)
+	const targetId = req.params['id']
+	const result = contacts.find(({ id }) => id === targetId)
+	if (!result) {
+		res.sendStatus(404)
+		return
+	}
+	res.send(result)
 })
 
-
 router.post('/api/contacts', async (req: Request, res: Response) => {
-	/*  
+	/*
 		#swagger.tags = ['Contacts']
 		#swagger.requestBody = {
             required: true,
 			content: {
                 "application/json": {
-                    schema: { $ref: "#/definitions/contact" },
+                    schema: { $ref: "#/definitions/contactInput" },
                 }
             }
         }
@@ -76,14 +77,14 @@ router.post('/api/contacts', async (req: Request, res: Response) => {
 })
 
 router.put('/api/contacts/:id', async (req: Request, res: Response) => {
-	/*  
+	/*
 		#swagger.tags = ['Contacts']
 		#swagger.parameters['id'] = { required: true, in: 'path' }
 		#swagger.requestBody = {
             required: true,
 			content: {
                 "application/json": {
-                    schema: { $ref: "#/definitions/contact" },
+                    schema: { $ref: "#/definitions/contactInput" },
                 }
             }
         }
@@ -99,7 +100,7 @@ router.put('/api/contacts/:id', async (req: Request, res: Response) => {
 })
 
 router.delete('/api/contacts/:id', async (req: Request, res: Response) => {
-	/*  
+	/*
 		#swagger.tags = ['Contacts']
 		#swagger.parameters['id'] = { required: true, in: 'path' }
     */

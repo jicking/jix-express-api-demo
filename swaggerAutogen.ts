@@ -14,6 +14,10 @@ const doc = {
 			isDisabled: false,
 		},
 		contactArray: [{ $ref: '#/definitions/contact' }],
+		contactInput: {
+			$name: 'John Doe',
+			isDisabled: false,
+		},
 	},
 }
 
