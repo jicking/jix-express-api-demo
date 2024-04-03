@@ -7,10 +7,18 @@ const doc = {
 		description: 'A simple Express API Vertical Slice demo',
 	},
 	host: 'localhost:3000',
+	definitions: {
+		contact: {
+			id: 'test123',
+			$name: 'John Doe',
+			isDisabled: false,
+		},
+		contactArray: [{ $ref: '#/definitions/contact' }],
+	},
 }
 
 const outputFile = './static/swagger.json'
-const routes = ['./modules/**/*.router.ts']
+const routes = ['./index.ts']
 
 /* NOTE: If you are using the express Router, you must pass in the 'routes' only the 
 root file where the route starts, such as index.js, app.js, routes.js, etc ... */

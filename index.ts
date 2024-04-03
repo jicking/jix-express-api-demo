@@ -1,4 +1,4 @@
-import express, { Express, Request, Response, Application } from 'express'
+import express, { Response, Application } from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 
@@ -16,7 +16,8 @@ app.use(express.json())
 app.use(morgan('tiny'))
 
 // API Endpoints
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (res: Response) => {
+	// #swagger.ignore = true
 	res.redirect('/docs')
 })
 app.use(contactRouter)
